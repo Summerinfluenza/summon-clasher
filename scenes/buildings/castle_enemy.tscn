@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ds2hfy5f2ud7j"]
+
+[ext_resource type="Texture2D" uid="uid://djiausv6mqqso" path="res://assets/buildings/towers.png" id="1_peyok"]
+
+[node name="castleEnemy" type="Node2D" unique_id=958522470]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1514544915]
+
+[node name="Towers" type="Sprite2D" parent="." unique_id=1087099859]
+texture_filter = 1
+position = Vector2(132, 174)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_peyok")
+region_enabled = true
+region_rect = Rect2(96, 32, 24, 48)
