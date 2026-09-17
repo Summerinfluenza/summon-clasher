@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://rn25w6ar7oox"]
+
+[ext_resource type="Script" uid="uid://ci20eyd23r240" path="res://scripts/base_character.gd" id="1_i5j26"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hv0ab"]
+animations = [{
+"frames": [],
+"loop": 0,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hv0ab"]
+radius = 4.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8kk7p"]
+radius = 49.0
+
+[node name="BaseCharacter" type="CharacterBody2D" unique_id=1975238504]
+script = ExtResource("1_i5j26")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1520654509]
+sprite_frames = SubResource("SpriteFrames_hv0ab")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=6545994]
+shape = SubResource("CircleShape2D_hv0ab")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1486173156]
+
+[node name="Detection" type="CollisionShape2D" parent="DetectionArea" unique_id=483395259]
+shape = SubResource("CircleShape2D_8kk7p")
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1320176685]
+visible = false
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="EnergyBar" type="ProgressBar" parent="." unique_id=1569987528]
+visible = false
+offset_right = 4.0
+offset_bottom = 27.0
