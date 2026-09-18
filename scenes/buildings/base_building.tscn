@@ -11,7 +11,7 @@ armor = 3
 metadata/_custom_type_script = "uid://cb071sq2ctww5"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucsts"]
-size = Vector2(25.125, 32.03125)
+size = Vector2(22.140625, 18.507813)
 
 [node name="BaseBuilding" type="StaticBody2D" unique_id=1726726842]
 script = ExtResource("1_6u2ey")
@@ -21,4 +21,5 @@ stats = SubResource("Resource_exp6l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=829764546]
 texture_filter = 1
+position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_ucsts")

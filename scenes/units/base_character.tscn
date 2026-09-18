@@ -33,7 +33,7 @@ shape = SubResource("CircleShape2D_hv0ab")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1486173156]
 
-[node name="Detection" type="CollisionShape2D" parent="DetectionArea" unique_id=483395259]
+[node name="DetectionArea2D" type="CollisionShape2D" parent="DetectionArea" unique_id=483395259]
 shape = SubResource("CircleShape2D_8kk7p")
 
 [node name="HealthBar" type="ProgressBar" parent="." unique_id=1320176685]

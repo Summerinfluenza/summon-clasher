@@ -4,17 +4,19 @@ extends CharacterBody2D
 # __________________________Unit Configs Properties__________________________
 enum State { IDLE, WALK, ATTACK, HURT, DEATH, SPECIAL }
 const ONCE_STATES := [State.ATTACK, State.SPECIAL, State.HURT, State.DEATH]
-const GAMESPEED = 30
+const TILESIZE = 32
 
 @export var stats : CharacterStats
 @export var team : Team.Side
 
-var current_hp: int
+var current_hp : int
 var current_energy : int
 var state: State
-var target: BaseCharacter
+var target: Node2D
+var enemy_base : Node2D
 var starting_direction : Vector2
 var current_direction : Vector2
+var attack_cooldown : float = 0.0
 
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 #@onready var hit_box : HitBox = $HitBox
@@ -41,6 +43,10 @@ func _spawn() -> void:
 	_set_state(State.IDLE)
 	_starting_direction()
 
+func _find_enemy_base() -> Node2D:
+	enemy_base = BattlefieldState.get_enemy_base(team)
+	return enemy_base
+	
 #__________________________Game Process__________________________
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -48,29 +54,33 @@ func _physics_process(delta: float) -> void:
 	if state in ONCE_STATES:
 		return
 	
-	# Temporary input controlled for testing
-	if Input.is_action_just_pressed("ui_accept"):
-		_attack()
+	if not is_instance_valid(target):
+		target = _find_enemy_base()
+
+	if target == null:
 		velocity = Vector2.ZERO
+		_idle()
 		move_and_slide()
 		return
 	
-	var input_direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	if input_direction != Vector2.ZERO:
-		velocity = input_direction * stats.movement_speed * GAMESPEED
-		_walk()
-		_set_direction(input_direction)
-	else:
+	attack_cooldown = maxf(attack_cooldown - delta, 0.0)
+	var to_target := target.global_position - global_position
+	if to_target.length() <= ((stats.attack_range + 1) * TILESIZE):
 		velocity = Vector2.ZERO
-		_idle()
-	move_and_slide()
+		if attack_cooldown <= 0.0:
+			_attack()
+	else:
+		velocity = to_target.normalized() * stats.movement_speed * TILESIZE
+		_walk()
+		_set_direction(to_target.normalized())
 		
+	move_and_slide()
+	
 # __________________________Unit Animation__________________________
 # Animation depending on state
 func _set_state(new_state: State) -> void:
 	if state == new_state:
 		return
-	print("Changing state to: ", new_state)
 	state = new_state
 	
 	match state:
@@ -98,8 +108,10 @@ func _walk() -> void:
 	_set_state(State.WALK)
 
 func _attack() -> void:
+	print("Attacking")
 	_set_state(State.ATTACK)
 	character_attack.emit(stats.attack_damage)
+	attack_cooldown = 1.0 /stats.attack_speed
 
 func _special() -> void:
 	_set_state(State.SPECIAL)

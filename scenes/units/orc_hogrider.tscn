@@ -16,7 +16,7 @@ armor = 2
 attack_damage = 8
 attack_speed = 0.7
 attack_range = 1
-movement_speed = 1.0
+movement_speed = 1.25
 metadata/_custom_type_script = "uid://cb071sq2ctww5"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uedkm"]

@@ -4,5 +4,7 @@ extends Node2D
 @onready var enemy_base: Building = $EnemyBase
 
 func _ready() -> void:
+	print("Battlefield _ready START")
 	BattlefieldState.player_base = player_base
 	BattlefieldState.enemy_base = enemy_base
+	print("Battlefield ready — player_base: ", player_base, " enemy_base: ", enemy_base)

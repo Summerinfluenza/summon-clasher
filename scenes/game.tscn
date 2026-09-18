@@ -11,20 +11,22 @@
 
 [node name="battlefield" parent="." unique_id=505560595 instance=ExtResource("1_yqjtg")]
 
-[node name="HumanArcher" parent="." unique_id=967450932 instance=ExtResource("4_7n40y")]
-position = Vector2(-69, 33)
+[node name="PlayerBase" parent="battlefield" unique_id=1726726842 instance=ExtResource("5_p57ef")]
+position = Vector2(-303, 133)
+
+[node name="EnemyBase" parent="battlefield" unique_id=1434905418 instance=ExtResource("6_u5sy4")]
+position = Vector2(268, -146)
+
+[node name="Characters" type="Node2D" parent="battlefield" unique_id=451787675]
+
+[node name="HumanArcher" parent="battlefield/Characters" unique_id=967450932 instance=ExtResource("4_7n40y")]
+position = Vector2(-248, 128)
+
+[node name="HumanKnight" parent="battlefield/Characters" unique_id=1975238504 instance=ExtResource("5_y6e7g")]
+position = Vector2(-263, 115)
+
+[node name="OrcHogrider" parent="battlefield/Characters" unique_id=1801346531 instance=ExtResource("6_p57ef")]
+position = Vector2(220, -112)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1985787959]
 position = Vector2(22, -22)
-
-[node name="HumanKnight" parent="." unique_id=1975238504 instance=ExtResource("5_y6e7g")]
-position = Vector2(-127, 65)
-
-[node name="OrcHogrider" parent="." unique_id=1801346531 instance=ExtResource("6_p57ef")]
-position = Vector2(104, -57)
-
-[node name="PlayerBuilding" parent="." unique_id=1726726842 instance=ExtResource("5_p57ef")]
-position = Vector2(-197, 81)
-
-[node name="EnemyBuilding" parent="." unique_id=276610427 instance=ExtResource("6_u5sy4")]
-position = Vector2(196, -119)
