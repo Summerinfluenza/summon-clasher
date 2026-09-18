@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cp827c4x1u7iw"]
+
+[ext_resource type="PackedScene" uid="uid://djypgigrokb5m" path="res://scenes/buildings/base_building.tscn" id="1_y48kv"]
+[ext_resource type="Texture2D" uid="uid://djiausv6mqqso" path="res://assets/enviroments/buildings/towers.png" id="2_opnq3"]
+
+[node name="EnemyBase" unique_id=1726726842 instance=ExtResource("1_y48kv")]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" parent="." index="0" unique_id=1983637457]
+texture = ExtResource("2_opnq3")
+region_enabled = true
+region_rect = Rect2(49, 50, 24, 30)

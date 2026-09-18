@@ -20,7 +20,7 @@ var current_direction : Vector2
 #@onready var hit_box : HitBox = $HitBox
 
 # __________________________Interaction signals__________________________
-signal character_damaged(current_hp: int)
+signal character_hurt(current_hp: int)
 signal character_attack(damage: int)
 signal died()
 
@@ -105,8 +105,8 @@ func _special() -> void:
 	_set_state(State.SPECIAL)
 	
 func _hurt(amount: int) -> void:
-	current_hp -= amount
-	character_damaged.emit(current_hp)
+	current_hp -= (amount - stats.armor)
+	character_hurt.emit(current_hp)
 	# No animation yet
 	#_set_state(State.HURT)
 	

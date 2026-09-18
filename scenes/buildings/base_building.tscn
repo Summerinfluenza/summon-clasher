@@ -1,7 +1,24 @@
 [gd_scene format=3 uid="uid://djypgigrokb5m"]
 
-[node name="BaseBuilding" type="StaticBody2D" unique_id=1726726842]
+[ext_resource type="Script" uid="uid://1u43aojcjfop" path="res://scripts/base_buildings.gd" id="1_6u2ey"]
+[ext_resource type="Script" uid="uid://cb071sq2ctww5" path="res://scripts/base_character_stats.gd" id="2_exp6l"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2115653002]
+[sub_resource type="Resource" id="Resource_exp6l"]
+script = ExtResource("2_exp6l")
+max_hp = 100
+hp = 100
+armor = 3
+metadata/_custom_type_script = "uid://cb071sq2ctww5"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ucsts"]
+size = Vector2(25.125, 32.03125)
+
+[node name="BaseBuilding" type="StaticBody2D" unique_id=1726726842]
+script = ExtResource("1_6u2ey")
+stats = SubResource("Resource_exp6l")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1983637457]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=829764546]
+texture_filter = 1
+shape = SubResource("RectangleShape2D_ucsts")

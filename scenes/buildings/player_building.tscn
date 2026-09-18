@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c3ocs38dwotfd"]
+
+[ext_resource type="PackedScene" uid="uid://djypgigrokb5m" path="res://scenes/buildings/base_building.tscn" id="1_gxf53"]
+[ext_resource type="Texture2D" uid="uid://djiausv6mqqso" path="res://assets/enviroments/buildings/towers.png" id="2_ngusj"]
+
+[node name="PlayerBase" unique_id=1726726842 instance=ExtResource("1_gxf53")]
+scale = Vector2(2, 2)
+
+[node name="Sprite2D" parent="." index="0" unique_id=1983637457]
+texture_filter = 1
+texture = ExtResource("2_ngusj")
+region_enabled = true
+region_rect = Rect2(98, 0, 22, 32)
