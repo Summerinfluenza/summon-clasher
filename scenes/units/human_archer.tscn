@@ -16,6 +16,7 @@ attack_speed = 0.7
 attack_range = 3
 price = 5
 movement_speed = 1.0
+unit_type = "ranged"
 metadata/_custom_type_script = "uid://cb071sq2ctww5"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ehtgn"]

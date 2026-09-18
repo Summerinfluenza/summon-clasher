@@ -18,3 +18,6 @@ extends Resource
 @export var movement_speed : float
 @export var max_energy : int
 @export var energy : int
+
+enum UnitType { MELEE, ANTI_CAVALRY, CAVALRY, ARCHER, BOSS }
+@export var unit_type : String
