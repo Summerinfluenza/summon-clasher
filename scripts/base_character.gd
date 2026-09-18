@@ -15,6 +15,8 @@ var attack_cooldown : float = 0.0
 @onready var detection: Detection = $Detection
 @onready var movement: Movement = $Movement
 @onready var animations: Animations = $Animations
+@onready var health: Health = $Health
+@onready var health_bar: HealthBar = $HealthBar
 
 # __________________________Interaction signals__________________________
 signal character_hurt(current_hp: int)
@@ -32,12 +34,16 @@ func _ready() -> void:
 	detection.team = team
 	detection.setup()
 	
+	health.setup(stats)
+	health_bar.setup(health)
+	health.hurt.connect(func(hp): character_hurt.emit(hp))
+	health.died.connect(_death)
+	
 	movement.set_starting_direction(team)
 	
 	_spawn()
 	
 func _spawn() -> void:
-	current_hp = stats.max_hp
 	animations.set_state(Animations.State.IDLE)
 	
 #__________________________Game Process__________________________
@@ -74,7 +80,6 @@ func _get_current_target() -> Node2D:
 	return detection.get_enemy_base()
 
 func _attack(current_target: Node2D) -> void:
-	print("Attacking")
 	animations.set_state(Animations.State.ATTACK)
 	
 	# Checks combat math for counterbonus.
@@ -92,14 +97,7 @@ func _special() -> void:
 	animations.set_state(Animations.State.SPECIAL)
 	
 func _hurt(amount: int) -> void:
-	current_hp -= (amount - stats.armor)
-	character_hurt.emit(current_hp)
-	# No animation yet
-	#animations.set_state(Animations.State.HURT)
-	
-	# Checks if unit hp less than 0, if true run death animation.
-	if current_hp <= 0:
-		_death()
+	health.take_damage(amount)
 	
 # Upon death, stop all logic and delete the character after playing the death animation once.
 func _death() -> void:

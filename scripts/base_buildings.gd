@@ -4,7 +4,9 @@ extends StaticBody2D
 # __________________________Building Configs Properties__________________________
 @export var team : Team.Side
 @export var stats : CharacterStats
-var current_hp: int
+
+@onready var health: Health = $Health
+@onready var health_bar: HealthBar = $HealthBar
 
 signal building_hurt(current_hp: int)
 signal die()
@@ -15,22 +17,14 @@ func _ready() -> void:
 		push_warning("%s has no Stats assigned — using defaults." % name)
 		stats = CharacterStats.new()
 	stats = stats.duplicate()
-	current_hp = stats.max_hp
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	health.setup(stats)
+	health_bar.setup(health)
+	health.hurt.connect(func(hp): building_hurt.emit(hp))
+	health.died.connect(_die)
 
 # __________________________Bulding interactions__________________________
 func _hurt(amount: int) -> void:
-	current_hp -= (amount - stats.armor)
-	building_hurt.emit(current_hp)
-	# No animation yet
-	#_set_state(State.HURT)
-	
-	# Checks if unit hp less than 0, if true run death animation.
-	if current_hp <= 0:
-		_die()
+	health.take_damage(amount)
 
 func _die() -> void:
 	die.emit()

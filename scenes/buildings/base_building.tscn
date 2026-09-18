@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://1u43aojcjfop" path="res://scripts/base_buildings.gd" id="1_6u2ey"]
 [ext_resource type="Script" uid="uid://cb071sq2ctww5" path="res://scripts/base_character_stats.gd" id="2_exp6l"]
+[ext_resource type="Script" uid="uid://lw4eov4hbfru" path="res://scripts/health.gd" id="3_l7r24"]
+[ext_resource type="Script" uid="uid://q5v7saxh771d" path="res://scripts/health_bar.gd" id="4_p0r6r"]
 
 [sub_resource type="Resource" id="Resource_exp6l"]
 script = ExtResource("2_exp6l")
@@ -13,6 +15,9 @@ metadata/_custom_type_script = "uid://cb071sq2ctww5"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ucsts"]
 size = Vector2(22.140625, 18.507813)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exp6l"]
+bg_color = Color(0.013717986, 0.7282688, 9.62615e-07, 1)
+
 [node name="BaseBuilding" type="StaticBody2D" unique_id=1726726842]
 script = ExtResource("1_6u2ey")
 stats = SubResource("Resource_exp6l")
@@ -23,3 +28,17 @@ stats = SubResource("Resource_exp6l")
 texture_filter = 1
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_ucsts")
+
+[node name="Health" type="Node2D" parent="." unique_id=1581778077]
+script = ExtResource("3_l7r24")
+
+[node name="HealthBar" type="Node2D" parent="." unique_id=1666647199]
+script = ExtResource("4_p0r6r")
+
+[node name="ProgressBar" type="ProgressBar" parent="HealthBar" unique_id=1647272625]
+offset_left = -19.0
+offset_top = -23.0
+offset_right = 19.0
+offset_bottom = -19.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_exp6l")
+show_percentage = false

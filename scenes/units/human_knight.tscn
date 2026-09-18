@@ -286,3 +286,7 @@ autoplay = "idle"
 
 [node name="CollisionShape2D" parent="." index="1" unique_id=6545994]
 shape = SubResource("CircleShape2D_7a6gy")
+
+[node name="ProgressBar" parent="HealthBar" parent_id_path=PackedInt32Array(423789811) index="0" unique_id=633923111]
+offset_top = -29.0
+offset_bottom = -25.0
