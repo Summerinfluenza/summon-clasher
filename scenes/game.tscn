@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bkmsksymkca4i"]
+
+[ext_resource type="PackedScene" uid="uid://dd6otkpybf1mw" path="res://scenes/maps/battlefield.tscn" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://bjm8h2hu7gn75" path="res://scenes/buildings/castle_player.tscn" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://bekupb5qqdcyq" path="res://scenes/units/human_archer.tscn" id="4_7n40y"]
+[ext_resource type="PackedScene" uid="uid://ds2hfy5f2ud7j" path="res://scenes/buildings/castle_enemy.tscn" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://bwcp4d55bxcew" path="res://scenes/units/human_knight.tscn" id="5_y6e7g"]
+[ext_resource type="PackedScene" uid="uid://cqgf2tlxaf6y" path="res://scenes/units/orc_hogrider.tscn" id="6_p57ef"]
+
+[node name="Game" type="Node2D" unique_id=1767334605]
+
+[node name="battlefield" parent="." unique_id=505560595 instance=ExtResource("1_yqjtg")]
+position = Vector2(-506, -263)
+
+[node name="castle" parent="." unique_id=128978219 instance=ExtResource("3_lbhrr")]
+position = Vector2(-197, 81)
+
+[node name="castleEnemy" parent="." unique_id=958522470 instance=ExtResource("4_iywne")]
+position = Vector2(60, -298)
+
+[node name="HumanArcher" parent="." unique_id=967450932 instance=ExtResource("4_7n40y")]
+position = Vector2(-69, 33)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1985787959]
+position = Vector2(22, -22)
+
+[node name="HumanKnight" parent="." unique_id=1975238504 instance=ExtResource("5_y6e7g")]
+position = Vector2(-127, 65)
+
+[node name="OrcHogrider" parent="." unique_id=1801346531 instance=ExtResource("6_p57ef")]
+position = Vector2(104, -57)
